@@ -299,11 +299,11 @@
         clearOptionsExceptFirst('model');
         if(vios_year.includes(year) && val.trim() == 'toyota'){
           console.log('make action true');
-          addOption('vios', 'Vios', 'model');
+          addOption('vios', 'Vios (15km/L)', 'model');
         }else if(vios_altis_year.includes(year) && val.trim() == 'toyota'){
           console.log('make action true 2');
-          addOption('vios', 'Vios', 'model');
-          addOption('altis', 'Altis', 'model');
+          addOption('vios', 'Vios (15km/L)', 'model');
+          addOption('altis', 'Altis (13km/L)', 'model');
         }else{
           console.log('make action true 3');
           clearOptionsExceptFirst('model');
