@@ -193,7 +193,7 @@
                   <p>Fuel Consumed (L):</p>
                 </div>
                 <div class="col-2">
-                  <input id="fuel" type="text" readonly class="form-control">
+                  <input id="fuel2" type="text" readonly class="form-control">
                 </div>
               </div>
 
@@ -298,8 +298,7 @@
         var prev = $('#prev').val();
         var current = $('#current').val();
         console.log(prev,current);
-        var model = $('#model').val();
-        var trip = $('#trip').val();
+        var trip = current - prev;
         var fuel_consumed;
         console.log(model);
 
@@ -312,7 +311,7 @@
         }
         console.log(fuel_consumed);
 
-        $('#fuel').val(fuel_consumed.toFixed(2));
+        $('#fuel2').val(fuel_consumed.toFixed(2));
       });
 
     });
