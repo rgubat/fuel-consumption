@@ -309,6 +309,7 @@
       $('#calculate2').on('click', function(){
         var prev = $('#prev').val();
         var current = $('#current').val();
+        var year = $('#year').val();
         console.log(prev,current);
         var trip = current - prev;
         var model = $('#model').val();
@@ -318,7 +319,11 @@
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(trip) / 13;
         }else if(model.trim() == 'vios'){
-          fuel_consumed = parseFloat(trip) / 15;
+          if(vios_year.includes(year)){
+            fuel_consumed = parseFloat(trip) / 15;
+          }else{
+            fuel_consumed = parseFloat(trip) / 16;
+          }
         }else{
           fuel_consumed = 0.00;
         }
