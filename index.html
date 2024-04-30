@@ -355,10 +355,10 @@
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(trip) / 13;
         }else if(model.trim() == 'vios'){
-          if(vios_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 15;
-          }else{
+          if(vios_latest_year.includes(year)){
             fuel_consumed = parseFloat(trip) / 16;
+          }else{
+            fuel_consumed = parseFloat(trip) / 15;
           }
         }else{
           fuel_consumed = 0.00;
@@ -381,10 +381,10 @@
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(trip) / 13;
         }else if(model.trim() == 'vios'){
-          if(vios_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 15;
-          }else{
+          if(vios_latest_year.includes(year)){
             fuel_consumed = parseFloat(trip) / 16;
+          }else{
+            fuel_consumed = parseFloat(trip) / 15;
           }
         }else{
           fuel_consumed = 0.00;
@@ -522,10 +522,10 @@
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(totalDistance) / 13;
         }else if(model.trim() == 'vios'){
-          if(vios_year.includes(year)){
-            fuel_consumed = parseFloat(totalDistance) / 15;
-          }else{
+          if(vios_latest_year.includes(year)){
             fuel_consumed = parseFloat(totalDistance) / 16;
+          }else{
+            fuel_consumed = parseFloat(totalDistance) / 15;
           }
         }else{
           fuel_consumed = 0.00;
