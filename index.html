@@ -398,14 +398,23 @@
     }
 
     function initAutocomplete() {
-      console.log('nenuts');
-      var autocomplete = new google.maps.places.Autocomplete(
+      
+      var start_loc = new google.maps.places.Autocomplete(
         $('#start_loc')[0], {types: ['geocode']});
 
-      autocomplete.addListener('place_changed', function() {
-        var place = autocomplete.getPlace();
+      start_loc.addListener('place_changed', function() {
+        var place = start_loc.getPlace();
         console.log(place); // Handle the place details for use in your application
       });
+
+      var end_loc = new google.maps.places.Autocomplete(
+        $('#end_loc')[0], {types: ['geocode']});
+
+      end_loc.addListener('place_changed', function() {
+        var place = end_loc.getPlace();
+        console.log(place); // Handle the place details for use in your application
+      });
+
     }
       
   </script>
