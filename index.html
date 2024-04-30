@@ -517,6 +517,7 @@
             totalDistance += route.legs[i].distance.value; // Distance in meters
         }
         totalDistance = (totalDistance / 1000).toFixed(2);
+        console.log('nenuts '+totalDistance);
         
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(totalDistance) / 13;
