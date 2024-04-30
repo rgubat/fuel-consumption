@@ -444,6 +444,9 @@
         console.log(parts_start_latlon);
         console.log(parts_end_latlon);
 
+        const myLatLng_start = {lat: parts_start_latlon[0], lng: parts_start_latlon[1]};
+        const myLatLng_end = {lat: parts_end_latlon[0], lng: parts_end_latlon[1]};
+
         var map = new google.maps.Map($('#map-main')[0], {
             center: {lat: 13, lng: 122},
             zoom: 7
@@ -457,11 +460,11 @@
         
 
         var start_loc_place = start_loc.getPlace();
-          if (!start_loc_place || !start_loc_place.geometry) {
-            alert("Please select a valid place first.");
-            return;
+        if (!start_loc_place || !start_loc_place.geometry) {
+          start_loc_marker.setPosition(myLatLng_start);
+        }else{
+          start_loc_marker.setPosition(start_loc_place.geometry.location);
         }
-        start_loc_marker.setPosition(start_loc_place.geometry.location);
         //start_loc_marker.setVisible(true);
         var start_loc_marker_lat = start_loc_place.geometry.location.lat();
         var start_loc_marker_lng = start_loc_place.geometry.location.lng();
@@ -476,9 +479,10 @@
         
 
         var end_loc_place = end_loc.getPlace();
-          if (!end_loc_place || !end_loc_place.geometry) {
-            alert("Please select a valid place first.");
-            return;
+        if (!end_loc_place || !end_loc_place.geometry) {
+          end_loc_marker.setPosition(myLatLng_end);
+        }else{
+          end_loc_marker.setPosition(end_loc_place.geometry.location);
         }
         end_loc_marker.setPosition(end_loc_place.geometry.location);
         //end_loc_marker.setVisible(true);
