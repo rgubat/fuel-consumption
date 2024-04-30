@@ -222,6 +222,19 @@
                 <h4 style="margin-top: 10px;">Calculate Using Start and End Location</h4>
               </div>
 
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Places
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Latlon
+                </label>
+              </div>
+
               <div class="row" style="margin-bottom: 10px;">
                 <div class="col-2">
                   <p>Start Location:</p>
@@ -485,7 +498,7 @@
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer,l1,lo1,l2,lo2) {
       $('#map-directions').empty();
-      
+
       directionsService
       .route({
         origin: l1+','+lo1,
