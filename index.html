@@ -507,10 +507,6 @@
         const dist = response.routes[0].legs[0].distance.text;
         const dur = response.routes[0].legs[0].duration.text;
   
-        var first = $('#first-col').height();
-          console.log(first);
-        $('#map-row').prop('style','height:'+first+'px !important');
-  
       })
       .catch((e) => window.alert("Directions request failed due to " + e));
       
