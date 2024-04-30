@@ -386,20 +386,7 @@
         $('#fuel2').val(fuel_consumed.toFixed(2));
       });
 
-      let start_loc;
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search predictions to geographical location types.
-        start_loc = new google.maps.places.Autocomplete(
-          document.getElementById('start_loc'), {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address fields in the form.
-        start_loc.addListener('place_changed', function() {
-          let place = start_loc.getPlace();
-          console.log(place); // You can handle the place object for further actions
-        });
-      }
-      
-      document.addEventListener("DOMContentLoaded", initAutocomplete);
+      initAutocomplete();
 
     });
 
@@ -413,6 +400,16 @@
 
     function clearOptionsExceptFirst(id) {
         $('#'+id+' option:not(:first)').remove(); // Removes all except the first option
+    }
+
+    function initAutocomplete() {
+      var autocomplete = new google.maps.places.Autocomplete(
+        $('#start_loc')[0], {types: ['geocode']});
+
+      autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        console.log(place); // Handle the place details for use in your application
+      });
     }
       
   </script>
