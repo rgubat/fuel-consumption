@@ -439,9 +439,11 @@
       $('#calculate3').on('click', function(){
         var start_latlon = $("#start_latlon").val();
         var end_latlon = $("#end_latlon").val();
-        console.log(start_latlon);
-        console.log(end_latlon);
-        
+        const parts_start_latlon = start_latlon.split(",");
+        const parts_end_latlon = end_latlon.split(",");
+        console.log(parts_start_latlon);
+        console.log(parts_end_latlon);
+
         var map = new google.maps.Map($('#map-main')[0], {
             center: {lat: 13, lng: 122},
             zoom: 7
