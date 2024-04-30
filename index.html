@@ -256,10 +256,10 @@
               </div>
 
               <div class="row" style="margin-bottom:10px;">
-                <div class="col-3">
+                <div class="col-4">
                   <div id="map-directions"></div>
                 </div>
-                <div class="col-9">
+                <div class="col-8">
                   <div id="map-main"></div>
                 </div>
               </div>
@@ -449,7 +449,7 @@
             return;
         }
         start_loc_marker.setPosition(start_loc_place.geometry.location);
-        start_loc_marker.setVisible(true);
+        //start_loc_marker.setVisible(true);
         var start_loc_marker_lat = start_loc_place.geometry.location.lat();
         var start_loc_marker_lng = start_loc_place.geometry.location.lng();
 
@@ -468,7 +468,7 @@
             return;
         }
         end_loc_marker.setPosition(end_loc_place.geometry.location);
-        end_loc_marker.setVisible(true);
+        //end_loc_marker.setVisible(true);
 
         var end_loc_marker_lat = end_loc_place.geometry.location.lat();
         var end_loc_marker_lng = end_loc_place.geometry.location.lng();
@@ -503,6 +503,34 @@
         });
         const dist = response.routes[0].legs[0].distance.text;
         const dur = response.routes[0].legs[0].duration.text;
+
+        var model = $('#model').val();
+        var year = $('#year').val();
+        var vios_year = ['2013','2014'];
+        var vios_latest_year = ['2021','2022','2023','2024']
+        var vios_altis_year = ['2015','2016','2017','2018','2019','2020'];
+        var fuel_consumed;
+
+        const route = response.routes[0];
+        let totalDistance = 0;
+        for (let i = 0; i < route.legs.length; i++) {
+            totalDistance += route.legs[i].distance.value; // Distance in meters
+        }
+        totalDistance = (totalDistance / 1000).toFixed(2);
+        
+        if(model.trim() == 'altis'){
+          fuel_consumed = parseFloat(totalDistance) / 13;
+        }else if(model.trim() == 'vios'){
+          if(vios_year.includes(year)){
+            fuel_consumed = parseFloat(totalDistance) / 15;
+          }else{
+            fuel_consumed = parseFloat(totalDistance) / 16;
+          }
+        }else{
+          fuel_consumed = 0.00;
+        }
+
+        $('#fuel3').val(fuel_consumed.toFixed(2));
   
       })
       .catch((e) => window.alert("Directions request failed due to " + e));
