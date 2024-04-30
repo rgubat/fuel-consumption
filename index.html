@@ -450,6 +450,8 @@
         }
         start_loc_marker.setPosition(start_loc_place.geometry.location);
         start_loc_marker.setVisible(true);
+        var start_loc_marker_lat = start_loc_place.geometry.location.lat();
+        var start_loc_marker_lng = start_loc_place.geometry.location.lng();
 
         // 
         var end_loc_marker = new google.maps.Marker({
@@ -468,8 +470,50 @@
         end_loc_marker.setPosition(end_loc_place.geometry.location);
         end_loc_marker.setVisible(true);
 
+        var end_loc_marker_lat = end_loc_place.geometry.location.lat();
+        var end_loc_marker_lng = end_loc_place.geometry.location.lng();
+
+        const directionsService2 = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        calculateAndDisplayRoute(directionsService2, directionsRenderer,start_loc_marker_lat,start_loc_marker_lng,end_loc_marker_lat,end_loc_marker_lng);
+
       });
 
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer,l1,lo1,l2,lo2) {
+
+    const selectedMode = $('select[name="mode"]').val();
+    console.log(selectedMode);
+  
+      directionsService
+      .route({
+        origin: l1+','+lo1,
+        destination: l2+','+lo2,
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: selectedMode,
+      })
+      .then((response) => {
+        console.log(response);
+        directionsRenderer.setDirections(response);
+        directionsRenderer.setPanel(document.getElementById("map-directions"));
+        directionsRenderer.setOptions({
+          preserveViewport: true
+        });
+        const dist = response.routes[0].legs[0].distance.text;
+        const dur = response.routes[0].legs[0].duration.text;
+  
+        var first = $('#first-col').height();
+          console.log(first);
+        $('#map-row').prop('style','height:'+first+'px !important');
+  
+      })
+      .catch((e) => window.alert("Directions request failed due to " + e));
+      
     }
       
   </script>
