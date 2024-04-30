@@ -444,6 +444,23 @@
         start_loc_marker.setPosition(start_loc_place.geometry.location);
         start_loc_marker.setVisible(true);
 
+        // 
+        var end_loc_marker = new google.maps.Marker({
+            map: map,
+            // Other properties can be set similarly to the old Marker
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+        end_loc_marker.setVisible(false);
+        
+
+        var end_loc_place = end_loc.getPlace();
+          if (!end_loc_place || !end_loc_place.geometry) {
+            alert("Please select a valid place first.");
+            return;
+        }
+        end_loc_marker.setPosition(end_loc_place.geometry.location);
+        end_loc_marker.setVisible(true);
+
       });
 
     }
