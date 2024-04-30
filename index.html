@@ -464,12 +464,13 @@
         var start_loc_place = start_loc.getPlace();
         if (!start_loc_place || !start_loc_place.geometry) {
           start_loc_marker.setPosition(myLatLng_start);
+          var start_loc_marker_lat = Number(parts_start_latlon[0]);
+          var start_loc_marker_lng = Number(parts_start_latlon[1]);
         }else{
           start_loc_marker.setPosition(start_loc_place.geometry.location);
+          var start_loc_marker_lat = start_loc_place.geometry.location.lat();
+          var start_loc_marker_lng = start_loc_place.geometry.location.lng();
         }
-        //start_loc_marker.setVisible(true);
-        var start_loc_marker_lat = start_loc_place.geometry.location.lat();
-        var start_loc_marker_lng = start_loc_place.geometry.location.lng();
 
         // 
         var end_loc_marker = new google.maps.Marker({
@@ -483,14 +484,16 @@
         var end_loc_place = end_loc.getPlace();
         if (!end_loc_place || !end_loc_place.geometry) {
           end_loc_marker.setPosition(myLatLng_end);
+          var end_loc_marker_lat = Number(parts_end_latlon[0]);
+          var end_loc_marker_lng = Number(parts_end_latlon[1]);
         }else{
           end_loc_marker.setPosition(end_loc_place.geometry.location);
+          var end_loc_marker_lat = end_loc_place.geometry.location.lat();
+          var end_loc_marker_lng = end_loc_place.geometry.location.lng(); 
         }
-        end_loc_marker.setPosition(end_loc_place.geometry.location);
         //end_loc_marker.setVisible(true);
 
-        var end_loc_marker_lat = end_loc_place.geometry.location.lat();
-        var end_loc_marker_lng = end_loc_place.geometry.location.lng();
+        
 
         const directionsService2 = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer();
