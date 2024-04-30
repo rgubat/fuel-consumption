@@ -516,7 +516,7 @@
         for (let i = 0; i < route.legs.length; i++) {
             totalDistance += route.legs[i].distance.value; // Distance in meters
         }
-        totalDistance = (totalDistance / 1000).toFixed(2);
+        totalDistance = (totalDistance / 1000);
         console.log('nenuts '+totalDistance);
         
         if(model.trim() == 'altis'){
