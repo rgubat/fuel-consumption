@@ -444,9 +444,9 @@
         console.log(parts_start_latlon);
         console.log(parts_end_latlon);
 
-        const myLatLng_start = {lat: parts_start_latlon[0], lng: parts_start_latlon[1]};
+        const myLatLng_start = {lat: Number(parts_start_latlon[0]), lng: Number(parts_start_latlon[1])};
         console.log(myLatLng_start);
-        const myLatLng_end = {lat: parts_end_latlon[0], lng: parts_end_latlon[1]};
+        const myLatLng_end = {lat: Number(parts_end_latlon[0]), lng: Number(parts_end_latlon[1])};
         console.log(myLatLng_end);
 
         var map = new google.maps.Map($('#map-main')[0], {
