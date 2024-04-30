@@ -343,22 +343,17 @@
       $('#make').on('change', function(){
         var year = $('#year').val();
         var val = $(this).val();
-        console.log(year,val);
-        console.log('make action');
         clearOptionsExceptFirst('model');
         if(vios_year.includes(year) && val.trim() == 'toyota'){
-          console.log('make action true');
           addOption('vios', 'Vios (15km/L)', 'model');
         }
         else if(vios_latest_year.includes(year) && val.trim() == 'toyota'){
           addOption('vios', 'Vios (16km/L)', 'model');
         }
         else if(vios_altis_year.includes(year) && val.trim() == 'toyota'){
-          console.log('make action true 2');
           addOption('vios', 'Vios (15km/L)', 'model');
           addOption('altis', 'Altis (13km/L)', 'model');
         }else{
-          console.log('make action true 3');
           clearOptionsExceptFirst('model');
         }
       });
@@ -368,7 +363,6 @@
         var trip = $('#trip').val();
         var year = $('#year').val();
         var fuel_consumed;
-        console.log(model);
 
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(trip) / 13;
@@ -381,8 +375,6 @@
         }else{
           fuel_consumed = 0.00;
         }
-        console.log(fuel_consumed);
-
         $('#fuel').val(fuel_consumed.toFixed(2));
       });
 
@@ -390,11 +382,9 @@
         var prev = $('#prev').val();
         var current = $('#current').val();
         var year = $('#year').val();
-        console.log(prev,current);
         var trip = current - prev;
         var model = $('#model').val();
         var fuel_consumed;
-        console.log(model);
 
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(trip) / 13;
@@ -407,7 +397,6 @@
         }else{
           fuel_consumed = 0.00;
         }
-        console.log(fuel_consumed);
 
         $('#fuel2').val(fuel_consumed.toFixed(2));
       });
@@ -417,7 +406,6 @@
     });
 
     function addOption(value, text, id) {
-      console.log(value,text,id);
         $('#'+id).append($('<option>', {
             value: value,
             text: text
@@ -436,7 +424,6 @@
 
       start_loc.addListener('place_changed', function() {
         var place = start_loc.getPlace();
-        console.log(place); // Handle the place details for use in your application
       });
 
       var end_loc = new google.maps.places.Autocomplete(
@@ -445,8 +432,12 @@
 
       end_loc.addListener('place_changed', function() {
         var place = end_loc.getPlace();
-        console.log(place); // Handle the place details for use in your application
       });
+
+      var start_latlon = $("#start_latlon").val();
+      var end_latlon = $("#end_latlon").val();
+      console.log(start_latlon);
+      console.log(end_latlon);
 
       $('#calculate3').on('click', function(){
         var map = new google.maps.Map($('#map-main')[0], {
@@ -514,7 +505,6 @@
         travelMode: "DRIVING",
       })
       .then((response) => {
-        console.log(response);
         directionsRenderer.setDirections(response);
         directionsRenderer.setPanel(document.getElementById("map-directions"));
         directionsRenderer.setOptions({
@@ -536,7 +526,6 @@
             totalDistance += route.legs[i].distance.value; // Distance in meters
         }
         totalDistance = (totalDistance / 1000);
-        console.log('nenuts '+totalDistance);
         
         if(model.trim() == 'altis'){
           fuel_consumed = parseFloat(totalDistance) / 13;
