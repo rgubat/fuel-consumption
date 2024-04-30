@@ -38,7 +38,7 @@
     .pac-container {
       z-index: 10000 !important; /* Ensure this is higher than the modal's z-index */
   }
-    #map {
+    #map-main {
       height: 400px;
       width: 100%;
   }
@@ -255,7 +255,7 @@
                 </div>
               </div>
 
-              <div id="map"></div>
+              <div id="map-main"></div>
 
             </div>
           </div>
@@ -424,7 +424,7 @@
       });
 
       $('#calculate3').on('click', function(){
-        var map = new google.maps.Map($('#map')[0], {
+        var map = new google.maps.Map($('#map-main')[0], {
             center: {lat: 13, lng: 122},
             zoom: 7
         });
