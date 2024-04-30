@@ -38,6 +38,10 @@
     .pac-container {
       z-index: 10000 !important; /* Ensure this is higher than the modal's z-index */
   }
+    #map {
+      height: 400px;
+      width: 100%;
+  }
   </style>
 </head>
 
@@ -251,6 +255,8 @@
                 </div>
               </div>
 
+              <div id="map"></div>
+
             </div>
           </div>
 
@@ -383,6 +389,10 @@
 
       initAutocomplete();
 
+      $('#calculate3').on('click', function(){
+        initMap();
+      });
+
     });
 
     function addOption(value, text, id) {
@@ -398,7 +408,7 @@
     }
 
     function initAutocomplete() {
-      
+
       var start_loc = new google.maps.places.Autocomplete(
         $('#start_loc')[0], {types: ['geocode']});
 
@@ -416,6 +426,87 @@
       });
 
     }
+
+    function initMap() {
+      var map = new google.maps.Map($('#map')[0], {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+      });
+  
+      var start_loc_val = $('#start_loc')[0];
+      var start_loc = new google.maps.places.Autocomplete(start_loc_val);
+      start_loc.setFields(['address_components', 'geometry', 'icon', 'name']);
+  
+      var infowindow = new google.maps.InfoWindow();
+      var infowindowContent = $('<div>')[0];
+      infowindow.setContent(infowindowContent);
+  
+      var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+      });
+  
+      start_loc.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = start_loc.getPlace();
+  
+          if (!place.geometry) {
+              window.alert("No details available for input: '" + place.name + "'");
+              return;
+          }
+  
+          // If the place has a geometry, present it on the map.
+          if (place.geometry.viewport) {
+              map.fitBounds(place.geometry.viewport);
+          } else {
+              map.setCenter(place.geometry.location);
+              map.setZoom(17);
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+  
+          $(infowindowContent).text(place.name);
+          infowindow.open(map, marker);
+      });
+
+      var end_loc_val = $('#end_loc')[0];
+      var end_loc = new google.maps.places.Autocomplete(end_loc_val);
+      end_loc.setFields(['address_components', 'geometry', 'icon', 'name']);
+  
+      var infowindow = new google.maps.InfoWindow();
+      var infowindowContent = $('<div>')[0];
+      infowindow.setContent(infowindowContent);
+  
+      var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+      });
+  
+      end_loc.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = end_loc.getPlace();
+  
+          if (!place.geometry) {
+              window.alert("No details available for input: '" + place.name + "'");
+              return;
+          }
+  
+          // If the place has a geometry, present it on the map.
+          if (place.geometry.viewport) {
+              map.fitBounds(place.geometry.viewport);
+          } else {
+              map.setCenter(place.geometry.location);
+              map.setZoom(17);
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+  
+          $(infowindowContent).text(place.name);
+          infowindow.open(map, marker);
+      });
+  }
       
   </script>
 
