@@ -484,9 +484,6 @@
     }
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer,l1,lo1,l2,lo2) {
-
-    const selectedMode = $('select[name="mode"]').val();
-    console.log(selectedMode);
   
       directionsService
       .route({
@@ -495,7 +492,7 @@
         // Note that Javascript allows us to access the constant
         // using square brackets and a string value as its
         // "property."
-        travelMode: selectedMode,
+        travelMode: "DRIVING",
       })
       .then((response) => {
         console.log(response);
