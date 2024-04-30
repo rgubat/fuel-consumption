@@ -207,6 +207,56 @@
               </div>
 
             </div>
+
+            <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
+              <div class="row" style="margin-bottom: 10px;">
+                <h4 style="margin-top: 10px;">Calculate Using Start and End Location</h4>
+              </div>
+
+              <div class="row" style="margin-bottom: 10px;">
+                <div class="col-2">
+                  <p>Start Location:</p>
+                </div>
+                <div class="col-2">
+                  <input type="text" id="start_loc" class="form-control">
+                </div>
+                <div class="col-3">
+                  <select id="make" class="form-select" aria-label="Default select example">
+                    <option value="kilometers" selected >Kilometers</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row" style="margin-bottom: 10px;">
+                <div class="col-2">
+                  <p>End Location:</p>
+                </div>
+                <div class="col-2">
+                  <input type="text" id="current" class="form-control">
+                </div>
+                <div class="col-3">
+                  <select id="make" class="form-select" aria-label="Default select example">
+                    <option value="kilometers" selected >Kilometers</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row" style="margin-bottom: 10px;">
+                <div class="col-2">
+                  <p>Fuel Consumed (L):</p>
+                </div>
+                <div class="col-2">
+                  <input id="fuel2" type="text" readonly class="form-control">
+                </div>
+              </div>
+
+              <div class="row" style="margin-bottom:10px;">
+                <div class="col-2">
+                  <button id="calculate2" type="button" class="btn btn-success">Calculate</button>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         <div class="modal-footer">
@@ -335,6 +385,21 @@
 
         $('#fuel2').val(fuel_consumed.toFixed(2));
       });
+
+      let start_loc;
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search predictions to geographical location types.
+        start_loc = new google.maps.places.Autocomplete(
+          document.getElementById('start_loc'), {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address fields in the form.
+        start_loc.addListener('place_changed', function() {
+          let place = start_loc.getPlace();
+          console.log(place); // You can handle the place object for further actions
+        });
+      }
+      
+      document.addEventListener("DOMContentLoaded", initAutocomplete);
 
     });
 
