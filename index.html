@@ -484,7 +484,8 @@
     }
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer,l1,lo1,l2,lo2) {
-  
+      $('#map-directions').empty();
+      
       directionsService
       .route({
         origin: l1+','+lo1,
