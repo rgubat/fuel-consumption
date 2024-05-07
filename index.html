@@ -310,8 +310,11 @@
                   <input type="file" id="csv_file" accept=".csv, application/json"/>
                 </div>
                 <div class="col-2">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal">Upload CSV</button>
+                  <button type="button" class="btn btn-success" id="upload" data-bs-dismiss="modal">Upload CSV</button>
                 </div>
+              </div>
+              <div class="row" style="margin-bottom: 10px;">
+                <div id="dataDisplay"></div>
               </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -547,6 +550,29 @@
  
       });
 
+      $('#upload').click(function() {
+        var fileInput = $('#csv_file')[0];
+        var file = fileInput.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var content = e.target.result;
+
+                // Determine file type and parse accordingly
+                if (file.type === "application/json" || file.name.endsWith('.json')) {
+                    parseJSON(content);
+                } else {
+                    parseCSV(content);
+                }
+            };
+
+            reader.readAsText(file);
+        } else {
+            alert('Please select a file to process.');
+        }
+    });
+
     }
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer,l1,lo1,l2,lo2) {
@@ -601,6 +627,33 @@
       })
       .catch((e) => window.alert("Directions request failed due to " + e));
       
+    }
+
+    function parseJSON(jsonData) {
+        try {
+            var dataObj = JSON.parse(jsonData);
+            $('#dataDisplay').html('<pre>' + JSON.stringify(dataObj, null, 2) + '</pre>');
+        } catch (e) {
+            alert('Invalid JSON data');
+        }
+    }
+
+    function parseCSV(csvData) {
+        var rows = csvData.split('\n');
+        var html = '<table border="1">';
+        
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].split(',');
+            if (cells.length > 1) {
+                html += '<tr>';
+                cells.forEach(function (cell) {
+                    html += '<td>' + cell.trim() + '</td>';
+                });
+                html += '</tr>';
+            }
+        }
+        html += '</table>';
+        $('#dataDisplay').html(html);
     }
       
   </script>
