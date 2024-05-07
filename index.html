@@ -410,20 +410,6 @@
         }
         $('#fuel').val(fuel_consumed.toFixed(2));
 
-        $.ajax({
-            url: 'https://api.example.com/data', // URL of the data source
-            type: 'GET', // Method type GET/POST/PUT/DELETE, etc.
-            dataType: 'json', // Type of data expected back from the server
-            success: function(response) {
-                // Handle the success case
-                $('#dataDisplay').html('<pre>' + JSON.stringify(response, null, 2) + '</pre>');
-            },
-            error: function(xhr, status, error) {
-                // Handle errors here
-                $('#dataDisplay').html("Error: " + error);
-            }
-        });
-
       });
 
       $('#calculate2').on('click', function(){
@@ -564,7 +550,7 @@
             console.log(workbook);
 
             // Assuming you want to display the first sheet
-            var firstSheetName = workbook.SheetNames[0];
+            var firstSheetName = workbook.SheetNames[1];
             var worksheet = workbook.Sheets[firstSheetName];
             var htmlstr = XLSX.utils.sheet_to_html(worksheet, { id: 'sheetTable', editable: false });
             $('#dataDisplay').html(htmlstr);
