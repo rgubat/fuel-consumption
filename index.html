@@ -348,7 +348,7 @@
           addOption('vios', 'Vios (15km/L)', 'model');
         }
         else if(vios_latest_year.includes(year) && val.trim() == 'toyota'){
-          addOption('vios', 'Vios (16km/L)', 'model');
+          addOption('vios', 'Vios (10km/L)', 'model');
         }
         else if(vios_altis_year.includes(year) && val.trim() == 'toyota'){
           addOption('vios', 'Vios (15km/L)', 'model');
@@ -368,7 +368,7 @@
           fuel_consumed = parseFloat(trip) / 13;
         }else if(model.trim() == 'vios'){
           if(vios_latest_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 16;
+            fuel_consumed = parseFloat(trip) / 10;
           }else{
             fuel_consumed = parseFloat(trip) / 15;
           }
@@ -390,7 +390,7 @@
           fuel_consumed = parseFloat(trip) / 13;
         }else if(model.trim() == 'vios'){
           if(vios_latest_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 16;
+            fuel_consumed = parseFloat(trip) / 10;
           }else{
             fuel_consumed = parseFloat(trip) / 15;
           }
