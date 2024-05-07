@@ -59,6 +59,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="getstarted scrollto" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Vehicle</a></li>
+          <li><a class="getstarted scrollto" data-bs-toggle="modal" data-bs-target="#exampleModal2">Report</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -293,6 +294,24 @@
     </div>
   </div>
 
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal2Label">Add Vehicle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row" style="margin-bottom: 10px;">
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -376,6 +395,21 @@
           fuel_consumed = 0.00;
         }
         $('#fuel').val(fuel_consumed.toFixed(2));
+
+        $.ajax({
+            url: 'https://api.example.com/data', // URL of the data source
+            type: 'GET', // Method type GET/POST/PUT/DELETE, etc.
+            dataType: 'json', // Type of data expected back from the server
+            success: function(response) {
+                // Handle the success case
+                $('#dataDisplay').html('<pre>' + JSON.stringify(response, null, 2) + '</pre>');
+            },
+            error: function(xhr, status, error) {
+                // Handle errors here
+                $('#dataDisplay').html("Error: " + error);
+            }
+        });
+
       });
 
       $('#calculate2').on('click', function(){
