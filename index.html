@@ -337,6 +337,7 @@
   <script src="assets/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOosgtkGRar0pCV8m9s9jo2DsVQaCs0jI&libraries=places"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script>
     $(document).ready( function(){
       var values = [ 
@@ -554,23 +555,39 @@
         var fileInput = $('#csv_file')[0];
         var file = fileInput.files[0];
 
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var content = e.target.result;
+        if (!file) return;
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var data = new Uint8Array(event.target.result);
+            var workbook = XLSX.read(data, {type: 'array'});
+            console.log(workbook);
+
+            // Assuming you want to display the first sheet
+            var firstSheetName = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[firstSheetName];
+            var htmlstr = XLSX.utils.sheet_to_html(worksheet, { id: 'sheetTable', editable: false });
+            $('#dataDisplay').html(htmlstr);
+        };
+        reader.readAsArrayBuffer(file);
+
+        //if (file) {
+         //   var reader = new FileReader();
+           // reader.onload = function(e) {
+             //   var content = e.target.result;
 
                 // Determine file type and parse accordingly
-                if (file.type === "application/json" || file.name.endsWith('.json')) {
-                    parseJSON(content);
-                } else {
-                    parseCSV(content);
-                }
-            };
+               // if (file.type === "application/json" || file.name.endsWith('.json')) {
+                //    parseJSON(content);
+                //} else {
+                 //   parseCSV(content);
+                //}
+            //};
 
-            reader.readAsText(file);
-        } else {
-            alert('Please select a file to process.');
-        }
+            //reader.readAsText(file);
+        //} else {
+         //   alert('Please select a file to process.');
+        //}
     });
 
     }
