@@ -71,224 +71,225 @@
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Vehicle</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row" style="margin-bottom: 10px;">
-            <div class="col-3">
-              <select id="year" class="form-select" aria-label="Default select example">
-                <option selected>Select Year</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <select id="make" class="form-select" aria-label="Default select example">
-                <option selected>Select Car Make</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <select id="model" class="form-select" aria-label="Default select example">
-                <option selected>Select Model</option>
-              </select>
-            </div>
-            <!-- <div class="col-3">
-              <select id="type" class="form-select" aria-label="Default select example">
-                <option selected disabled hidden>Select Type</option>
-                <option value="19.9">1.3 M/T (19.9km/L)</option>
-                <option value="1.3 XE CVT">1.3 XE CVT</option>
-                <option value="1.6 E M/T">1.6 E M/T</option>
-                <option value="1.6 G A/T">1.6 G A/T</option>
-                <option value="1.3 E A/T">1.3 E A/T</option>
-                <option value="1.5 G A/T">1.5 G A/T</option>
-              </select>
-            </div> -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Vehicle</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Using Distance</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Using Odometer Reading</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="map" aria-selected="false">Using Map Locations</button>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div class="row" style="margin-bottom: 10px;">
-                <h4 style="margin-top: 10px;">Calculate Using Distance Traveled</h4>
+          <div class="modal-body">
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-3">
+                <select id="year" class="form-select" aria-label="Default select example">
+                  <option selected>Select Year</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                </select>
               </div>
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Trip Distance:</p>
-                </div>
-                <div class="col-2">
-                  <input id="trip" type="text" class="form-control">
-                </div>
-                <div class="col-3">
-                  <select id="make" class="form-select" aria-label="Default select example">
-                    <option value="kilometers" selected >Kilometers</option>
-                  </select>
-                </div>
+              <div class="col-3">
+                <select id="make" class="form-select" aria-label="Default select example">
+                  <option selected>Select Car Make</option>
+                </select>
               </div>
-
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Fuel Consumed (L):</p>
-                </div>
-                <div class="col-2">
-                  <input id="fuel" type="text" readonly class="form-control">
-                </div>
+              <div class="col-3">
+                <select id="model" class="form-select" aria-label="Default select example">
+                  <option selected>Select Model</option>
+                </select>
               </div>
-
-              <div class="row" style="margin-bottom:10px;">
-                <div class="col-2">
-                  <button id="calculate" type="button" class="btn btn-success">Calculate</button>
-                </div>
-              </div>
-
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="row" style="margin-bottom: 10px;">
-                <h4 style="margin-top: 10px;">Calculate Using Current and Previous Odometer Readings</h4>
-              </div>
-              <div class="row" style="margin-bottom: 10px; font-weight:700 ;">
-                <p>Odometer</p>
-              </div>
-
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Previous Reading:</p>
-                </div>
-                <div class="col-2">
-                  <input type="text" id="prev" class="form-control">
-                </div>
-                <div class="col-3">
-                  <select id="make" class="form-select" aria-label="Default select example">
-                    <option value="kilometers" selected >Kilometers</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Current Reading:</p>
-                </div>
-                <div class="col-2">
-                  <input type="text" id="current" class="form-control">
-                </div>
-                <div class="col-3">
-                  <select id="make" class="form-select" aria-label="Default select example">
-                    <option value="kilometers" selected >Kilometers</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Fuel Consumed (L):</p>
-                </div>
-                <div class="col-2">
-                  <input id="fuel2" type="text" readonly class="form-control">
-                </div>
-              </div>
-
-              <div class="row" style="margin-bottom:10px;">
-                <div class="col-2">
-                  <button id="calculate2" type="button" class="btn btn-success">Calculate</button>
-                </div>
-              </div>
-
+              <!-- <div class="col-3">
+                <select id="type" class="form-select" aria-label="Default select example">
+                  <option selected disabled hidden>Select Type</option>
+                  <option value="19.9">1.3 M/T (19.9km/L)</option>
+                  <option value="1.3 XE CVT">1.3 XE CVT</option>
+                  <option value="1.6 E M/T">1.6 E M/T</option>
+                  <option value="1.6 G A/T">1.6 G A/T</option>
+                  <option value="1.3 E A/T">1.3 E A/T</option>
+                  <option value="1.5 G A/T">1.5 G A/T</option>
+                </select>
+              </div> -->
             </div>
 
-            <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
-              <div class="row" style="margin-bottom: 10px;">
-                <h4 style="margin-top: 10px;">Calculate Using Start and End Location</h4>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Using Distance</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Using Odometer Reading</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="map" aria-selected="false">Using Map Locations</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row" style="margin-bottom: 10px;">
+                  <h4 style="margin-top: 10px;">Calculate Using Distance Traveled</h4>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Trip Distance:</p>
+                  </div>
+                  <div class="col-2">
+                    <input id="trip" type="text" class="form-control">
+                  </div>
+                  <div class="col-3">
+                    <select id="make" class="form-select" aria-label="Default select example">
+                      <option value="kilometers" selected >Kilometers</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Fuel Consumed (L):</p>
+                  </div>
+                  <div class="col-2">
+                    <input id="fuel" type="text" readonly class="form-control">
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom:10px;">
+                  <div class="col-2">
+                    <button id="calculate" type="button" class="btn btn-success">Calculate</button>
+                  </div>
+                </div>
+
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row" style="margin-bottom: 10px;">
+                  <h4 style="margin-top: 10px;">Calculate Using Current and Previous Odometer Readings</h4>
+                </div>
+                <div class="row" style="margin-bottom: 10px; font-weight:700 ;">
+                  <p>Odometer</p>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Previous Reading:</p>
+                  </div>
+                  <div class="col-2">
+                    <input type="text" id="prev" class="form-control">
+                  </div>
+                  <div class="col-3">
+                    <select id="make" class="form-select" aria-label="Default select example">
+                      <option value="kilometers" selected >Kilometers</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Current Reading:</p>
+                  </div>
+                  <div class="col-2">
+                    <input type="text" id="current" class="form-control">
+                  </div>
+                  <div class="col-3">
+                    <select id="make" class="form-select" aria-label="Default select example">
+                      <option value="kilometers" selected >Kilometers</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Fuel Consumed (L):</p>
+                  </div>
+                  <div class="col-2">
+                    <input id="fuel2" type="text" readonly class="form-control">
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom:10px;">
+                  <div class="col-2">
+                    <button id="calculate2" type="button" class="btn btn-success">Calculate</button>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Start Location:</p>
+              <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
+                <div class="row" style="margin-bottom: 10px;">
+                  <h4 style="margin-top: 10px;">Calculate Using Start and End Location</h4>
                 </div>
-                <div class="col-10">
-                  <input type="text" id="start_loc" class="form-control">
-                </div>
-              </div>
 
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>End Location:</p>
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Start Location:</p>
+                  </div>
+                  <div class="col-10">
+                    <input type="text" id="start_loc" class="form-control">
+                  </div>
                 </div>
-                <div class="col-10">
-                  <input type="text" id="end_loc" class="form-control">
-                </div>
-              </div>
 
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Start LatLon:</p>
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>End Location:</p>
+                  </div>
+                  <div class="col-10">
+                    <input type="text" id="end_loc" class="form-control">
+                  </div>
                 </div>
-                <div class="col-10">
-                  <input type="text" id="start_latlon" class="form-control">
-                </div>
-              </div>
 
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>End LatLon:</p>
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Start LatLon:</p>
+                  </div>
+                  <div class="col-10">
+                    <input type="text" id="start_latlon" class="form-control">
+                  </div>
                 </div>
-                <div class="col-10">
-                  <input type="text" id="end_latlon" class="form-control">
-                </div>
-              </div>
-              
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-2">
-                  <p>Fuel Consumed (L):</p>
-                </div>
-                <div class="col-2">
-                  <input id="fuel3" type="text" readonly class="form-control">
-                </div>
-              </div>
 
-              <div class="row" style="margin-bottom:10px;">
-                <div class="col-2">
-                  <button id="calculate3" type="button" class="btn btn-success">Calculate</button>
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>End LatLon:</p>
+                  </div>
+                  <div class="col-10">
+                    <input type="text" id="end_latlon" class="form-control">
+                  </div>
                 </div>
-              </div>
+                
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-2">
+                    <p>Fuel Consumed (L):</p>
+                  </div>
+                  <div class="col-2">
+                    <input id="fuel3" type="text" readonly class="form-control">
+                  </div>
+                </div>
 
-              <div class="row" style="margin-bottom:10px;">
-                <div class="col-4">
-                  <div id="map-directions"></div>
+                <div class="row" style="margin-bottom:10px;">
+                  <div class="col-2">
+                    <button id="calculate3" type="button" class="btn btn-success">Calculate</button>
+                  </div>
                 </div>
-                <div class="col-8">
-                  <div id="map-main"></div>
-                </div>
-              </div>
 
+                <div class="row" style="margin-bottom:10px;">
+                  <div class="col-4">
+                    <div id="map-directions"></div>
+                  </div>
+                  <div class="col-8">
+                    <div id="map-main"></div>
+                  </div>
+                </div>
+
+              </div>
             </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
           </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
         </div>
       </div>
     </div>
