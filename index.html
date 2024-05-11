@@ -351,10 +351,13 @@
         imageWidth: 400,
         imageHeight: 400,
         backdrop: 'static',
-        input: "text",
+        input: "password",
         inputAttributes: {
           autocapitalize: "off"
         },
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
         confirmButtonText: "Submit",
         showLoaderOnConfirm: true,
         preConfirm: async (login) => {
