@@ -26,6 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css">
 
   <!-- =======================================================
   * Template Name: Bikin
@@ -339,9 +340,34 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOosgtkGRar0pCV8m9s9jo2DsVQaCs0jI&libraries=places"></script>
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
  
   <script>
     $(document).ready( function(){
+
+      Swal.fire({
+        title: "Submit your Github username",
+        input: "text",
+        inputAttributes: {
+          autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Look up",
+        showLoaderOnConfirm: true,
+        preConfirm: async (login) => {
+          console.log(login);
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log('success');
+          // Swal.fire('{
+          //   title: `${result.value.login}'s avatar`,
+          //   imageUrl: result.value.avatar_url
+          // });
+        }
+      });
+
       var values = [ 
         {
           '2013' : ['Vios'],
