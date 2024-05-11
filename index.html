@@ -345,75 +345,55 @@
   <script>
     $(document).ready( function(){
 
-      const { value: password } = await Swal.fire({
-        title: "Enter",
+      Swal.fire({
+        title: "Password",
         imageUrl: "assets/img/dogquestion.gif",
         imageWidth: 400,
         imageHeight: 400,
         backdrop: 'static',
         input: "password",
-        inputLabel: "Password",
-        inputPlaceholder: "Enter here",
+        inputAttributes: {
+          autocapitalize: "off"
+        },
         allowOutsideClick: false,
         allowEscapeKey: false,
         confirmButtonText: "Submit",
-        inputAttributes: {
-          autocapitalize: "off",
-          autocorrect: "off"
+        showLoaderOnConfirm: true,
+        // preConfirm: async (login) => {
+        //   console.log(login);
+        // }
+      }).then((result) => {
+        console.log(result);
+        if (result.isConfirmed) {
+          var password_text = "Please try again."
+          if(result == 'sissygorl'){
+           password_text = "Correct Password" 
+          }
+          
+          let timerInterval;
+          Swal.fire({
+            title: password_text,
+            html: "This will close in <b></b> milliseconds.",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              const timer = Swal.getPopup().querySelector("b");
+              timerInterval = setInterval(() => {
+                timer.textContent = `${Swal.getTimerLeft()}`;
+              }, 100);
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          });
         }
       });
-      if (password) {
-        Swal.fire(`Entered password: ${password}`);
-      }
-
-      // const { value: password } = await Swal.fire({
-      //   title: "Password",
-      //   imageUrl: "assets/img/dogquestion.gif",
-      //   imageWidth: 400,
-      //   imageHeight: 400,
-      //   backdrop: 'static',
-      //   input: "password",
-      //   inputAttributes: {
-      //     autocapitalize: "off"
-      //   },
-      //   allowOutsideClick: false,
-      //   allowEscapeKey: false,
-      //   confirmButtonText: "Submit",
-      //   showLoaderOnConfirm: true,
-      //   // preConfirm: async (login) => {
-      //   //   console.log(login);
-      //   // }
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     var password_text = "Please try again."
-      //     if(result == 'sissygorl'){
-      //      password_text = "Correct Password" 
-      //     }
-          
-      //     let timerInterval;
-      //     Swal.fire({
-      //       title: password_text,
-      //       html: "This will close in <b></b> milliseconds.",
-      //       timer: 2000,
-      //       timerProgressBar: true,
-      //       didOpen: () => {
-      //         Swal.showLoading();
-      //         const timer = Swal.getPopup().querySelector("b");
-      //         timerInterval = setInterval(() => {
-      //           timer.textContent = `${Swal.getTimerLeft()}`;
-      //         }, 100);
-      //       },
-      //       willClose: () => {
-      //         clearInterval(timerInterval);
-      //       }
-      //     }).then((result) => {
-      //       /* Read more about handling dismissals below */
-      //       if (result.dismiss === Swal.DismissReason.timer) {
-      //         console.log("I was closed by the timer");
-      //       }
-      //     });
-      //   }
-      // });
 
       var values = [ 
         {
