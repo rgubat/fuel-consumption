@@ -43,6 +43,9 @@
       height: 400px;
       width: 100%;
   }
+  .swal2-input-label {
+    color: red; /* Change the color to your desired color */
+  }
   </style>
 </head>
 
@@ -363,11 +366,23 @@
         //   console.log(login);
         // }
         preConfirm: (value) => {
-            if(value == 'sissygorl'){
-              return true;
-            }else{
-              return false;
-            }
+            // if(value == 'sissygorl'){
+            //   return true;
+            // }else{
+            //   return false;
+            // }
+            return new Promise((resolve) => {
+              if (value === 'sissygorl') {
+                resolve(true); // Resolve with true if password is correct
+              } else {
+                // Add a field label and resolve with false if password is incorrect
+                Swal.update({
+                  inputLabel: 'Incorrect Password. Please try again.',
+                  inputValue: ''
+                });
+                resolve(false);
+              }
+            });
         },
       }).then((result) => {
         console.log(result);
