@@ -376,10 +376,7 @@
                 resolve(true); // Resolve with true if password is correct
               } else {
                 // Add a field label and resolve with false if password is incorrect
-                Swal.update({
-                  inputLabel: 'Incorrect Password. Please try again.',
-                  inputValue: ''
-                });
+                alert('Wrong password, please try again');
                 resolve(false);
               }
             });
