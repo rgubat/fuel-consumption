@@ -346,18 +346,19 @@
     $(document).ready( function(){
 
       Swal.fire({
-        title: "Submit your Github username",
+        title: "Password",
+        imageUrl: "https://media.giphy.com/media/xT0xeuOy2Fcl9vDGiA/giphy.gif?cid=790b7611nhlgb16lrskfh5n9pkby7fky3qrxdybae8ni3kwf&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+        imageWidth: 400,
+        imageHeight: 200,
         input: "text",
         inputAttributes: {
           autocapitalize: "off"
         },
-        showCancelButton: true,
-        confirmButtonText: "Look up",
+        confirmButtonText: "Submit",
         showLoaderOnConfirm: true,
         preConfirm: async (login) => {
           console.log(login);
-        },
-        allowOutsideClick: () => !Swal.isLoading()
+        }
       }).then((result) => {
         if (result.isConfirmed) {
           console.log('success');
