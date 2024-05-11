@@ -359,16 +359,38 @@
         allowEscapeKey: false,
         confirmButtonText: "Submit",
         showLoaderOnConfirm: true,
-        preConfirm: async (login) => {
-          console.log(login);
-        }
+        // preConfirm: async (login) => {
+        //   console.log(login);
+        // }
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log('success');
-          // Swal.fire('{
-          //   title: `${result.value.login}'s avatar`,
-          //   imageUrl: result.value.avatar_url
-          // });
+          var password_text = "Please try again."
+          if(result == 'sissygorl'){
+           password_text = "Correct Password" 
+          }
+          
+          let timerInterval;
+          Swal.fire({
+            title: password_text,
+            html: "This will close in <b></b> milliseconds.",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              const timer = Swal.getPopup().querySelector("b");
+              timerInterval = setInterval(() => {
+                timer.textContent = `${Swal.getTimerLeft()}`;
+              }, 100);
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          });
         }
       });
 
