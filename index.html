@@ -438,6 +438,10 @@
           }else if(vios_altis_year.includes(value)){
             addOption('toyota', 'Toyota', 'make');
           }else if(vios_latest_year.includes(value)){
+            
+            addOption('toyota', 'Toyota', 'make');
+          }
+          else if(year == '2016' && val.trim() == 'toyota'){
             addOption('toyota', 'Toyota', 'make');
           }else{
             clearOptionsExceptFirst('model');
