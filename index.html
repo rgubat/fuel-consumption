@@ -504,17 +504,22 @@
         var model = $('#model').val();
         var fuel_consumed;
 
-        if(model.trim() == 'altis'){
-          fuel_consumed = parseFloat(trip) / 13;
-        }else if(model.trim() == 'vios'){
-          if(vios_latest_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 10;
-          }else{
-            fuel_consumed = parseFloat(trip) / 15;
-          }
+        if(year == '2016'){
+          fuel_consumed = parseFloat(trip) / 10;
         }else{
-          fuel_consumed = 0.00;
+          if(model.trim() == 'altis'){
+            fuel_consumed = parseFloat(trip) / 13;
+          }else if(model.trim() == 'vios'){
+            if(vios_latest_year.includes(year)){
+              fuel_consumed = parseFloat(trip) / 10;
+            }else{
+              fuel_consumed = parseFloat(trip) / 15;
+            }
+          }else{
+            fuel_consumed = 0.00;
+          }
         }
+        
 
         $('#fuel2').val(fuel_consumed.toFixed(2));
       });
@@ -694,7 +699,7 @@
         var year = $('#year').val();
         var vios_year = ['2013','2014'];
         var vios_latest_year = ['2021','2022','2023','2024']
-        var vios_altis_year = ['2015','2016','2017','2018','2019','2020'];
+        var vios_altis_year = ['2015','2017','2018','2019','2020'];
         var fuel_consumed;
 
         const route = response.routes[0];
@@ -704,17 +709,22 @@
         }
         totalDistance = (totalDistance / 1000);
         
-        if(model.trim() == 'altis'){
-          fuel_consumed = parseFloat(totalDistance) / 13;
-        }else if(model.trim() == 'vios'){
-          if(vios_latest_year.includes(year)){
-            fuel_consumed = parseFloat(totalDistance) / 10;
-          }else{
-            fuel_consumed = parseFloat(totalDistance) / 15;
-          }
+        if(year == '2016'){
+          fuel_consumed = parseFloat(trip) / 10;
         }else{
-          fuel_consumed = 0.00;
+          if(model.trim() == 'altis'){
+            fuel_consumed = parseFloat(totalDistance) / 13;
+          }else if(model.trim() == 'vios'){
+            if(vios_latest_year.includes(year)){
+              fuel_consumed = parseFloat(totalDistance) / 10;
+            }else{
+              fuel_consumed = parseFloat(totalDistance) / 15;
+            }
+          }else{
+            fuel_consumed = 0.00;
+          }
         }
+        
 
         $('#fuel3').val(fuel_consumed.toFixed(2));
   
