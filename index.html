@@ -427,7 +427,7 @@
 
       var vios_year = ['2013','2014'];
       var vios_latest_year = ['2021','2022','2023','2024']
-      var vios_altis_year = ['2015','2016','2017','2018','2019','2020'];
+      var vios_altis_year = ['2015','2017','2018','2019','2020'];
 
       $('#year').on('change', function(){
         var value = $(this).val();
@@ -458,6 +458,9 @@
         else if(vios_altis_year.includes(year) && val.trim() == 'toyota'){
           addOption('vios', 'Vios (15km/L)', 'model');
           addOption('altis', 'Altis (13km/L)', 'model');
+        }else if(year == '2016' && val.trim() == 'toyota'){
+          addOption('vios', 'Vios (10km/L)', 'model');
+          addOption('altis', 'Altis (10km/L)', 'model');
         }else{
           clearOptionsExceptFirst('model');
         }
@@ -469,17 +472,22 @@
         var year = $('#year').val();
         var fuel_consumed;
 
-        if(model.trim() == 'altis'){
-          fuel_consumed = parseFloat(trip) / 13;
-        }else if(model.trim() == 'vios'){
-          if(vios_latest_year.includes(year)){
-            fuel_consumed = parseFloat(trip) / 10;
-          }else{
-            fuel_consumed = parseFloat(trip) / 15;
-          }
+        if(year == '2016'){
+          fuel_consumed = parseFloat(trip) / 10;
         }else{
-          fuel_consumed = 0.00;
+          if(model.trim() == 'altis'){
+            fuel_consumed = parseFloat(trip) / 13;
+          }else if(model.trim() == 'vios'){
+            if(vios_latest_year.includes(year)){
+              fuel_consumed = parseFloat(trip) / 10;
+            }else{
+              fuel_consumed = parseFloat(trip) / 15;
+            }
+          }else{
+            fuel_consumed = 0.00;
+          }
         }
+        
         $('#fuel').val(fuel_consumed.toFixed(2));
 
       });
