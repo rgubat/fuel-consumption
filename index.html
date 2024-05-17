@@ -710,7 +710,7 @@
         totalDistance = (totalDistance / 1000);
         
         if(year == '2016'){
-          fuel_consumed = parseFloat(trip) / 10;
+          fuel_consumed = parseFloat(totalDistance) / 10;
         }else{
           if(model.trim() == 'altis'){
             fuel_consumed = parseFloat(totalDistance) / 13;
