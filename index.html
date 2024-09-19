@@ -520,7 +520,13 @@
             }else{
               fuel_consumed = parseFloat(trip) / 15;
             }
-          }else{
+          }
+          else if(model.trim() == 'vios2'){
+            if(vios_latest_year.includes(year)){
+              fuel_consumed = parseFloat(trip) / 12;
+            }
+          }
+          else{
             fuel_consumed = 0.00;
           }
         }
@@ -725,7 +731,13 @@
             }else{
               fuel_consumed = parseFloat(totalDistance) / 15;
             }
-          }else{
+          }
+          else if(model.trim() == 'vios2'){
+            if(vios_latest_year.includes(year)){
+              fuel_consumed = parseFloat(trip) / 12;
+            }
+          }
+          else{
             fuel_consumed = 0.00;
           }
         }
